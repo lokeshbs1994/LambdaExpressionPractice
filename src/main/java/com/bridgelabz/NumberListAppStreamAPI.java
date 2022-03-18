@@ -3,7 +3,9 @@ package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
 
 public class NumberListAppStreamAPI {
     public static void main(String[] args) {
@@ -14,15 +16,9 @@ public class NumberListAppStreamAPI {
         // UC2.1 creating stream  and Iterate the Each item to show each element of stream
         list.stream().forEach(item -> System.out.println(item));
 
-        // UC2.2 converting and Storing
-        List<Double> doubleList = new ArrayList<>(); // for storing
-        Function<Integer, Double> doubleFunction = (n) -> n.doubleValue();
-        list.stream().forEach(item -> doubleList.add(doubleFunction.apply(item)));// converting & Storing
+        // UC 2.5
+        Function<Integer,Double> doubleFunction = (n) -> n.doubleValue();
+        List<Double>  doubleList = list.stream().map(doubleFunction).peek(n -> System.out.println("peek "+n)).collect(Collectors.toList());
         System.out.println(doubleList);
-
-        // UC3.3 Storing the result from above Function From result Double list
-        // to another list by using collection
-        List<Double> listOfDouble = doubleList.stream().collect(Collectors.toList());
-        System.out.println(listOfDouble);
     }
 }
