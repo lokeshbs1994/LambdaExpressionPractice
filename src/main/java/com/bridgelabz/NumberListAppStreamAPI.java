@@ -17,7 +17,12 @@ public class NumberListAppStreamAPI {
         // UC2.2 converting and Storing
         List<Double> doubleList = new ArrayList<>(); // for storing
         Function<Integer, Double> doubleFunction = (n) -> n.doubleValue();
-        doubleList = list.stream().map(doubleFunction).collect(Collectors.toList());
+        list.stream().forEach(item -> doubleList.add(doubleFunction.apply(item)));// converting & Storing
         System.out.println(doubleList);
+
+        // UC3.3 Storing the result from above Function From result Double list
+        // to another list by using collection
+        List<Double> listOfDouble = doubleList.stream().collect(Collectors.toList());
+        System.out.println(listOfDouble);
     }
 }
